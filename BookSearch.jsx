@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { LanguageFilter } from "./LanguageFilter";
+import { Link } from "react-router-dom";
+
 
 export function BookSearch({ books, selectedLang, setSelectedLang }) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -26,7 +28,9 @@ export function BookSearch({ books, selectedLang, setSelectedLang }) {
       />
       {filteredBooks.map((book, i) => (
         <div key={i}>
-          <strong>{book.title}</strong><br />
+           <Link to={`/book/${book.key?.replace('/works/', '')}`}>
+          <strong>{book.title}</strong>
+          </Link><br />
           Author: {book.author_name?.[0] || "Unknown"}
         </div>
       ))}
